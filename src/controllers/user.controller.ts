@@ -9,7 +9,7 @@ const controllerCreateUsers = async (req: Request, res: Response) => {
     return res.status(response.status).json({ message: response.message });
   }
 
-  return res.status(201).json(response.token);
+  return res.status(201).json({ token: response.token });
 };
 
 export default controllerCreateUsers;

@@ -6,6 +6,7 @@ const insert = async (username: string, vocation: string, level: number, passwor
     'INSERT INTO Trybesmith.users (username, vocation, level, password) VALUES (?, ?, ?, ?)',
     [username, vocation, level, password],
   );
+  console.log(insertId);
 
   return insertId;
 };
