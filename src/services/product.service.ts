@@ -2,8 +2,12 @@ import * as productsModel from '../models/product.model';
 import { addProductSchema } from './validations/schema';
 
 export const createProduct = async (name: string, amount: string) => {
-  if (addProductSchema.validate({ name, amount }).error) {
-    return { status: 401, message: 'product not created' };
+  const { error } = addProductSchema.validate({ name, amount }); 
+
+  if (error) {
+    const httpStatus = error.details[0].type === 'any.required' ? 400 : 422;
+    
+    return { status: httpStatus, message: error.message };
   }
 
   const id = await productsModel.insert(name, amount);
