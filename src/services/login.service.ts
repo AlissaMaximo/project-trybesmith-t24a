@@ -15,7 +15,7 @@ const serviceLogin = async (
     return { status: httpStatus, message: error.message };
   } */
 
-  const id = await loginModel(username, vocation, level, password);
+  const id = await loginModel(username, password);
   
   const token = cryptoRandomString(32);
 

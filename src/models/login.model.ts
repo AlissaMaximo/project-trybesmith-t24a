@@ -3,13 +3,10 @@ import connection from './connection';
 
 const checkLogin = async (
   username: string,
-  vocation: string,
-  level: number,
   password: string,
 ) => {  
   const [{ insertId }] = await connection.execute<ResultSetHeader>(
-    'INSERT INTO Trybesmith.users (username, vocation, level, password) VALUES (?, ?, ?, ?)',
-    [username, vocation, level, password],
+    `SELECT * FROM Trybesmith.users WHERE username = '${username}' AND password = '${password}'`,
   );
   console.log(insertId);
 
