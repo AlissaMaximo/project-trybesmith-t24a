@@ -8,8 +8,11 @@ const serviceCreateUser = async (
   level: number, 
   password: string,
 ) => {  
-  if (addUserSchema.validate({ username, vocation, level, password }).error) {
-    return { status: 401, message: 'user not created' };
+  const { error } = addUserSchema.validate({ username, vocation, level, password });
+  if (error) {
+    const httpStatus = error.details[0].type === 'any.required' ? 400 : 422;
+    
+    return { status: httpStatus, message: error.message };
   }
 
   const id = await userModelInsert(username, vocation, level, password);
