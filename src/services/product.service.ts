@@ -1,5 +1,5 @@
 import * as productsModel from '../models/product.model';
-import addProductSchema from './validations/schema';
+import { addProductSchema } from './validations/schema';
 
 export const createProduct = async (name: string, amount: string) => {
   if (addProductSchema.validate({ name, amount }).error) {

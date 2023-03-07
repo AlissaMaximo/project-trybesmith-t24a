@@ -1,6 +1,5 @@
 import { Request, Response } from 'express';
 import * as productService from '../services/product.service';
-// import errorMap from '../utils/errorMap';
 
 export const createProducts = async (req: Request, res: Response) => {
   // const { type, message } = await productService.findAll();
