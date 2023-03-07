@@ -2,11 +2,15 @@
 import connection from './connection';
 
 const list = async () => {  
-  const [result] = await connection.execute(
-    'SELECT * FROM Trybesmith.orders',
+  const [ordersTable] = await connection.execute(
+    `SELECT orders.id, orders.user_id AS userId, products.id AS productsIds 
+    FROM Trybesmith.orders LEFT JOIN Trybesmith.products ON orders.id = products.order_id
+    `,
   );
+
+  console.log(ordersTable);
     
-  return result;
+  return ordersTable;
 };
 
 /* export const findById = async (productId) => {
