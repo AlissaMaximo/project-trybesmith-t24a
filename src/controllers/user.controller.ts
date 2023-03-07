@@ -1,15 +1,16 @@
 import { Request, Response } from 'express';
-import createUser from '../services/user.service';
+import serviceCreateUser from '../services/user.service';
 
-const createUsers = async (req: Request, res: Response) => {
+const controllerCreateUsers = async (req: Request, res: Response) => {
   const response = await 
-  createUser(req.body.username, req.body.vocation, req.body.level, req.body.password);
-
+  serviceCreateUser(req.body.username, req.body.vocation, req.body.level, req.body.password);
+  console.log(req);
+  
   if (response.status) {
     return res.status(response.status).json({ message: response.message });
   }
 
-  return res.status(201).json(response.message);
+  return res.status(201).json(response.token);
 };
 
-export default createUsers;
+export default controllerCreateUsers;
