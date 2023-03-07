@@ -7,9 +7,7 @@ const serviceCreateUser = async (
   vocation: string, 
   level: number, 
   password: string,
-) => {
-  console.log(username, vocation, level, password);
-  
+) => {  
   if (addUserSchema.validate({ username, vocation, level, password }).error) {
     return { status: 401, message: 'user not created' };
   }
@@ -17,7 +15,7 @@ const serviceCreateUser = async (
   const id = await userModelInsert(username, vocation, level, password);
   
   const token = cryptoRandomString(32);
-  console.log(id, token);
+
   return { id, token };
 };
 
