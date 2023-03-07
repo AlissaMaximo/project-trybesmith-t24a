@@ -4,8 +4,6 @@ import loginModel from '../models/login.model';
 
 const serviceLogin = async (
   username: string, 
-  vocation: string, 
-  level: number, 
   password: string,
 ) => {  
   /* const { error } = addUserSchema.validate({ username, vocation, level, password });
