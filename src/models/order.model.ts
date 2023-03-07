@@ -3,8 +3,9 @@ import connection from './connection';
 
 const list = async () => {  
   const [ordersTable] = await connection.execute(
-    `SELECT orders.id, orders.user_id AS userId, products.id AS productsIds 
-    FROM Trybesmith.orders LEFT JOIN Trybesmith.products ON orders.id = products.order_id
+    `SELECT orders.id, orders.user_id AS userId, JSON_ARRAYAGG(products.id) AS productsIds 
+    FROM Trybesmith.orders LEFT JOIN Trybesmith.products ON products.order_id = orders.id
+    GROUP BY orders.id
     `,
   );
 
