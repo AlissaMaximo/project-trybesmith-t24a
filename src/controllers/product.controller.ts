@@ -7,7 +7,7 @@ export const createProducts = async (req: Request, res: Response) => {
   // if (type) return res.status(errorMap.mapError(type)).json(message);
   // res.status(200).json(message);
   // req.body.atributo 
-  console.log(req.body);
+
   const response = await productService.createProduct(req.body.name, req.body.amount);
 
   if (response.status) {
@@ -17,4 +17,12 @@ export const createProducts = async (req: Request, res: Response) => {
   return res.status(201).json(response.message);
 };
 
-export const listProducts = async (req: Request, res: Response) => {};
+export const listProducts = async (_req: Request, res: Response) => {
+  const response = await productService.listProducts();
+
+  /* if (response.status) {
+    return res.status(response.status).json({ message: response.message });
+  } */
+
+  return res.status(200).json(response);
+};

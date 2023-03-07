@@ -2,10 +2,11 @@
 import { ResultSetHeader } from 'mysql2';
 import connection from './connection';
 
-export const findAll = async () => {
+export const list = async () => {  
   const [result] = await connection.execute(
-    'SELECT * FROM products',
+    'SELECT * FROM Trybesmith.products',
   );
+    
   return result;
 };
 
