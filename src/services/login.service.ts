@@ -1,23 +1,22 @@
 import cryptoRandomString from 'crypto-random-string';
-// import { addUserSchema } from './validations/schema';
+import { loginUserSchema } from './validations/schema';
 import loginModel from '../models/login.model';
 
 const serviceLogin = async (
   username: string, 
   password: string,
 ) => {  
-  /* const { error } = addUserSchema.validate({ username, vocation, level, password });
+  const { error } = loginUserSchema.validate({ username, password });
+  
   if (error) {
-    const httpStatus = error.details[0].type === 'any.required' ? 400 : 422;
-    
-    return { status: httpStatus, message: error.message };
-  } */
+    return { status: 400, message: error.message };
+  }
 
-  const id = await loginModel(username, password);
+  const user = await loginModel(username, password);
   
   const token = cryptoRandomString(32);
 
-  return { id, token };
+  return { user, token };
 };
 
 export default serviceLogin;
