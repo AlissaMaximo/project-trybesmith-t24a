@@ -3,7 +3,7 @@ import express from 'express';
 
 import LoginController from '../controllers/login.controller';
 
-import LoginMiddleware from '../middlewares/login.middleware';
+import LoginMiddleware from '../middlewares/LoginMiddleware';
 
 const router = express.Router();
 

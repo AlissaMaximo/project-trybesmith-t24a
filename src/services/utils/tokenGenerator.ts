@@ -15,6 +15,10 @@ class JWTGenerator {
     this.secret = process.env.JWT_SECRET || 'secret';
   }
 
+  get mySecret(): string {
+    return this.secret;
+  }
+
   public tokenGenerator(id: number | undefined, username: string) {
     const JWT = jwt.sign({ id, username }, this.secret, { expiresIn: '7d', algorithm: 'HS256' });
 
