@@ -1,26 +1,17 @@
-import cryptoRandomString from 'crypto-random-string';
-import { loginUserSchema } from './validations/schema';
-import loginModel from '../models/login.model';
+import connection from '../models/connection';
+import LoginModel from '../models/login.model';
+import ILogin from '../interfaces/login.interface';
 
-const serviceLogin = async (
-  username: string, 
-  password: string,
-) => {  
-  const { error } = loginUserSchema.validate({ username, password });
-  
-  if (error) {
-    return { statusCode: 400, message: error.message };
+class LoginService {
+  public model: LoginModel;
+
+  constructor() {
+    this.model = new LoginModel(connection);
   }
 
-  const user = await loginModel(username, password);
-  
-  const token = cryptoRandomString(32);
-
-  return { user, token };
-};
-
-export default serviceLogin;
-
-/* Fontes:
-Como gerar um token: https://medium.com/@norbertofariasmedeiros/five-steps-como-gerar-um-random-token-em-javascript-1e1488a15d28
-*/
+  public async findUser(username: string, password: string): Promise<ILogin> {
+    const login = await this.model.findUser(username, password);
+    return login;
+  }
+}
+export default LoginService;

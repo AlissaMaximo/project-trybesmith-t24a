@@ -1,13 +1,25 @@
-import connection from './connection';
+import { Pool } from 'mysql2/promise';
+import ILogin from '../interfaces/login.interface';
 
-const checkLogin = async (username: string, password: string) => {  
-  const [result] = await connection.execute(
-    'SELECT * FROM Trybesmith.users WHERE username = (?) AND password = (?)',
-    [username, password],
-  );
-  console.log(result);
+export default class LoginModel {
+  public connection: Pool;
 
-  return result;
-};
+  constructor(connection: Pool) {
+    this.connection = connection;
+  }
 
-export default checkLogin;
+  public async findUser(username: string, password: string): Promise<ILogin> {
+    const query = `SELECT id, username FROM Trybesmith.users 
+    WHERE username = (?) AND password = (?)`;
+    const result = await this.connection
+      .execute(query, [username, password]);
+      
+    console.log(result[0]);
+    const [rows] = result;
+    const [login] = rows as ILogin[];
+    
+    console.log('login', login);
+    
+    return login;
+  }
+}

@@ -1,9 +1,11 @@
 import express from 'express';
 
-import controllerLoginUsers from '../controllers/login.controller';
+import LoginController from '../controllers/login.controller';
 
 const router = express.Router();
 
-router.post('/login', controllerLoginUsers);
+const loginController = new LoginController();
+
+router.post('/login', loginController.findUser);
 
 export default router;
