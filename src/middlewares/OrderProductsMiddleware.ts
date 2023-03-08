@@ -30,8 +30,6 @@ export default class OrderProductsMiddleware {
 
     const isNotNumber = productsIds
       .some((productId: number) => typeof productId !== 'number');
-
-    console.log(isNotNumber);
       
     if (isNotNumber || !arrayIsPopulated) {
       return res.status(422).json({ message: '"productsIds" must include only numbers' });
