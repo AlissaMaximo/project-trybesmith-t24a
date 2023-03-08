@@ -1,7 +1,7 @@
 import * as modelOrders from '../models/order.model';
 
 export const listOrders = async () => {
-  const ordersList = await modelOrders.list;
+  const ordersList = await modelOrders.list();
 
   return ordersList;
 }; 
