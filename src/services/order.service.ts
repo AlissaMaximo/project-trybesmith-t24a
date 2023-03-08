@@ -1,13 +1,19 @@
-import listOrdersModel from '../models/order.model';
+import * as modelOrders from '../models/order.model';
 
-const listOrders = async () => {
-  const ordersList = await listOrdersModel();
-  
-  /* if (typeof OrdersList !== array) {
-    return { status: 401, message: 'issue with the list' };
-  } */
+export const listOrders = async () => {
+  const ordersList = await modelOrders.list;
 
   return ordersList;
 }; 
 
-export default listOrders;
+export const createOrder = async (userId: number, productsIds: Array<number>) => {
+  const newOrderId = await modelOrders.createOrder(userId);
+
+  productsIds.forEach((productId) => {
+    modelOrders.updateProducts(newOrderId, productId);
+  });
+/*   console.log(await modelOrders.temporaryCheck());
+
+  console.log('oi do service. newOrderId:', newOrderId);
+  console.log('productsId', productsIds); */
+};

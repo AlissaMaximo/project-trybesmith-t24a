@@ -16,12 +16,9 @@ export default class LoginModel {
     const result = await this.connection
       .execute(query, [username, password]);
       
-    console.log(result[0]);
     const [rows] = result;
     const [login] = rows as ILogin[];
-    
-    console.log('login', login);
-    
+        
     return login;
   }
 }

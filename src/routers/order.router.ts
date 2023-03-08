@@ -1,13 +1,13 @@
 import express from 'express';
 
-import controllerCreateUsers from '../controllers/order.controller';
+import * as controllerOrder from '../controllers/order.controller';
 import TokenMiddleware from '../middlewares/TokenMiddleware';
 
 const router = express.Router();
 
 const tokenMiddleware = new TokenMiddleware();
 
-router.post('/orders', tokenMiddleware.verifyToken);
-router.get('/orders', controllerCreateUsers);
+router.post('/orders', tokenMiddleware.verifyToken, controllerOrder.createOrders);
+router.get('/orders', controllerOrder.listOrders);
 
 export default router;
