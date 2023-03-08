@@ -9,9 +9,9 @@ export const listOrders = async () => {
 export const createOrder = async (userId: number, productsIds: Array<number>) => {
   const newOrderId = await modelOrders.createOrder(userId);
 
-  productsIds.forEach((productId) => {
-    modelOrders.updateProducts(newOrderId, productId);
-  });
+  const promiseArray = productsIds
+    .map((productId) => modelOrders.updateProducts(newOrderId, productId));
 
+  await Promise.all(promiseArray);
   return { userId, productsIds };
 };
