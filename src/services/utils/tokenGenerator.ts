@@ -1,4 +1,6 @@
 import jwt from 'jsonwebtoken';
+// Feito com ajuda do Ebraim Oliveira. Texto comentado abaixo por Ebraim.
+
 // Json Web Token
 
 // o sign serve para 'assinar' o jwt. Contem 3 partes:

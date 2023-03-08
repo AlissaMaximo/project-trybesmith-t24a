@@ -1,3 +1,5 @@
+// Feito com ajuda do Ebraim Oliveira
+
 import { Pool } from 'mysql2/promise';
 import ILogin from '../interfaces/login.interface';
 

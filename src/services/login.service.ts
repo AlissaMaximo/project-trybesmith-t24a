@@ -1,3 +1,5 @@
+// Feito com ajuda do Ebraim Oliveira
+
 import connection from '../models/connection';
 import LoginModel from '../models/login.model';
 import ILogin from '../interfaces/login.interface';
