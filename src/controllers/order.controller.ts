@@ -9,6 +9,7 @@ export const listOrders = async (_req: Request, res: Response) => {
 
 export const createOrders = async (req: Request, res: Response) => {
   const response = await serviceOrders.createOrder(req.body.id, req.body.productsIds);
+  console.log(response);
 
   return res.status(201).json(response);
 };

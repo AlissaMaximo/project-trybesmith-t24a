@@ -12,8 +12,6 @@ export const createOrder = async (userId: number, productsIds: Array<number>) =>
   productsIds.forEach((productId) => {
     modelOrders.updateProducts(newOrderId, productId);
   });
-/*   console.log(await modelOrders.temporaryCheck());
 
-  console.log('oi do service. newOrderId:', newOrderId);
-  console.log('productsId', productsIds); */
+  return { userId, productsIds };
 };

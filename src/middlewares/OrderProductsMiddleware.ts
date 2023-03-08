@@ -26,7 +26,7 @@ export default class OrderProductsMiddleware {
   public verifyIsNumberArray = (req: Request, res: Response, next: NextFunction) => {
     const { body: { productsIds } } = req;
 
-    const arrayIsPopulated = productsIds.length > 1;
+    const arrayIsPopulated = productsIds.length >= 1;
 
     const isNotNumber = productsIds
       .some((productId: number) => typeof productId !== 'number');
