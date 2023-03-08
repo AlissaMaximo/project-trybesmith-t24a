@@ -17,7 +17,6 @@ export const createOrder = async (userId: number) => {
     'INSERT INTO Trybesmith.orders (user_id) VALUES (?)',
     [userId],
   );
-  console.log(insertId, 'oi do model');
     
   return insertId;
 };
