@@ -5,8 +5,8 @@ const controllerLoginUsers = async (req: Request, res: Response) => {
   const response = await 
   serviceLoginUser(req.body.username, req.body.password);
   
-  if (response.status) {
-    return res.status(response.status).json({ message: response.message });
+  if (response.statusCode) {
+    return res.status(response.statusCode).json({ message: response.message });
   }
 
   return res.status(200).json({ token: response.token });

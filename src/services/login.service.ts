@@ -9,7 +9,7 @@ const serviceLogin = async (
   const { error } = loginUserSchema.validate({ username, password });
   
   if (error) {
-    return { status: 400, message: error.message };
+    return { statusCode: 400, message: error.message };
   }
 
   const user = await loginModel(username, password);
