@@ -7,4 +7,6 @@ const listOrders = async (_req: Request, res: Response) => {
   return res.status(200).json(response);
 };
 
+const createOrders = async ()
+
 export default listOrders;
